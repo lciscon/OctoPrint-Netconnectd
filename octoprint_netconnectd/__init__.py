@@ -187,18 +187,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		if not flag:
 			raise RuntimeError("Error while stopping ap: " + content)
 
-    def _exec_cmd(self, cmd_line):
-        try:
-            r = os.system(cmd_line)
-        except:
-            e = sys.exc_info()[0]
-            self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
-            return (None,)
-
-        self._logger.info("Command %s returned: %s" % (cmd_line, r))
-
-        return(r)
-
 	def _send_message(self, message, data):
 		obj = dict()
 		obj[message] = data
@@ -244,6 +232,18 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 		finally:
 			sock.close()
+
+    def _exec_cmd(self, cmd_line):
+        try:
+            r = os.system(cmd_line)
+        except:
+            e = sys.exc_info()[0]
+            self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
+            return (None,)
+
+        self._logger.info("Command %s returned: %s" % (cmd_line, r))
+        return(r)
+
 
 __plugin_name__ = "Netconnectd Client"
 
