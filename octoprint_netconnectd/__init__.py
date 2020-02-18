@@ -234,12 +234,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			sock.close()
 
     def _exec_cmd(self, cmd_line):
-        try:
-            r = os.system(cmd_line)
-        except:
-            return (None)
-
-        return(r)
+        return False
 
 #    def _exec_cmd(self, cmd_line):
 #        try:
