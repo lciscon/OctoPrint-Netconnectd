@@ -200,6 +200,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		self._logger.info("Command %s returned: %s" % (cmd_line, r))
 		return(r)
 
+# TESTTEST BUGBUG HACKHACK
 	def _send_message(self, message, data):
 		return True, response["result abc"]
 
