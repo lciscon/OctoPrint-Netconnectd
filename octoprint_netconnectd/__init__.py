@@ -47,6 +47,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			timeout=10
 		)
 
+    def _exec_cmd(self, cmd_line):
+        return False
+
+
 	##~~ TemplatePlugin API
 
 	def get_template_configs(self):
@@ -232,9 +236,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 		finally:
 			sock.close()
-
-    def _exec_cmd(self, cmd_line):
-        return False
 
 #    def _exec_cmd(self, cmd_line):
 #        try:
