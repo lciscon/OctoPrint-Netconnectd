@@ -235,7 +235,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def exec_cmd(self, cmd_line):
         try:
-            r= os.system(cmd_line)
+            r = os.system(cmd_line)
 
 		except Exception as e:
 			output = "Error executing command: {}".format(e)
