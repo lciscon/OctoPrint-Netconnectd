@@ -31,8 +31,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		if hostname:
 			return hostname
 		else:
-			import socket
-			return socket.gethostname() + ".local"
+			r = self._exec_cmd("hostname")
+			return(r)
+#			import socket
+#			return socket.gethostname() + ".local"
 
 	##~~ SettingsPlugin
 
@@ -55,30 +57,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		]
 
 	##~~ SimpleApiPlugin API
-
-	def exec_cmd(self, cmd_line):
-        try:
-            r = os.system(cmd_line)
-        except Exception as e:
-			output = "Error while talking to netconnectd: {}".format(e)
-			self._logger.warn(output)
-			return (None)
-
-		return (r)
-
-
-#    def _exec_cmd(self, cmd_line):
-#        try:
-#            r = os.system(cmd_line)
-#        except:
-#            e = sys.exc_info()[0]
-#            self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
-#            return (None,)
-
-#        self._logger.info("Command %s returned: %s" % (cmd_line, r))
-#        return(r)
-
-
 
 	def get_api_commands(self):
 		return dict(
@@ -210,6 +188,17 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		flag, content = self._send_message("stop_ap", payload)
 		if not flag:
 			raise RuntimeError("Error while stopping ap: " + content)
+
+	def _exec_cmd(self, cmd_line):
+		try:
+			r = os.system(cmd_line)
+		except:
+			e = sys.exc_info()[0]
+			self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
+			return (None,)
+
+		self._logger.info("Command %s returned: %s" % (cmd_line, r))
+		return(r)
 
 	def _send_message(self, message, data):
 		obj = dict()
