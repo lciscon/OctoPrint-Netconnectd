@@ -45,7 +45,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	def get_settings_defaults(self):
 		return dict(
 			socket="/var/run/netconnectd.sock",
-			hostname=None,
+			hostname="octopi",
 			timeout=10
 		)
 
