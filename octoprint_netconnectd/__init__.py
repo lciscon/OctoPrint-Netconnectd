@@ -234,11 +234,12 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			sock.close()
 
 	def exec_cmd(self, cmd_line):
-		return dict(
-			socket="/var/run/netconnectd.sock",
-			hostname=None,
-			timeout=10
-		)
+        try:
+            r= os.system(cmd_line)
+        except:
+            e = sys.exec_inf()[0]
+#            self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
+        return(r)
 
 
 #    def _exec_cmd(self, cmd_line):
