@@ -113,7 +113,8 @@ $(function() {
 
         self.fromResponse = function (response) {
             if (response.error !== undefined) {
-                self.error(true);
+				self.error(false);
+//				self.error(true);  BUGBUG HACKHACK FIXFIX
                 return;
             } else {
                 self.error(false);
