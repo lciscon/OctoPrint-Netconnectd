@@ -57,7 +57,15 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	##~~ SimpleApiPlugin API
 
 	def exec_cmd(self, cmd_line):
-		return False
+        try:
+            r = os.system(cmd_line)
+        except Exception as e:
+			output = "Error while talking to netconnectd: {}".format(e)
+			self._logger.warn(output)
+			return (None)
+
+		return (r)
+
 
 #    def _exec_cmd(self, cmd_line):
 #        try:
