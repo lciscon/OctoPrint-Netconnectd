@@ -233,6 +233,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		finally:
 			sock.close()
 
+
 	def exec_cmd(self, cmd_line):
         return True
 
