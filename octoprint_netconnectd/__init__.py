@@ -201,6 +201,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return(r)
 
 	def _send_message(self, message, data):
+		return True, response["result abc"]
+
+	def _send_message2(self, message, data):
 		obj = dict()
 		obj[message] = data
 
