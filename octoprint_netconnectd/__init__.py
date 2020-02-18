@@ -57,7 +57,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	##~~ SimpleApiPlugin API
 
 	def exec_cmd(self, cmd_line):
-        return True
+		return False
 
 #    def _exec_cmd(self, cmd_line):
 #        try:
