@@ -241,9 +241,11 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			output = "Error executing command: {}".format(e)
 			self._logger.warn(output)
 			return None
-#            self._logger.warn("Error executing command ID %s: %s" % (cmd_line, e))
 
         return(r)
+
+#            self._logger.warn("Error executing command ID %s: %s" % (cmd_line, e))
+
 
 
 #    def _exec_cmd(self, cmd_line):
