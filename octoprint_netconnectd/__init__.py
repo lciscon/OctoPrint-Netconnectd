@@ -54,7 +54,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			timeout=10
 		)
 
-    def _exec_cmd(self, cmd_line):
+    def exec_cmd(self, cmd_line):
 		return dict(
 			socket="/var/run/netconnectd.sock",
 			hostname=None,
