@@ -190,6 +190,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			raise RuntimeError("Error while stopping ap: " + content)
 
 	def _exec_cmd(self, cmd_line):
+		self._logger.info("Executing command: %s" % (cmd_line))
 		try:
 			r = os.system(cmd_line)
 		except:
