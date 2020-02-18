@@ -60,7 +60,7 @@ $(function() {
                     text = gettext("Connected (unknown connection)");
                 }
             } else {
-                text = gettext("Not connected to network");
+                text = gettext("Not connected to network " + self.hostname());  //BUGBUG HACKHACK FIXFIX
             }
 
             if (!self.status.wifi.present()) {
