@@ -47,8 +47,19 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			timeout=10
 		)
 
+	def get_settings_defaults2(self, cmd_line):
+		return dict(
+			socket="/var/run/netconnectd.sock",
+			hostname=None,
+			timeout=10
+		)
+
     def _exec_cmd(self, cmd_line):
-        return False
+		return dict(
+			socket="/var/run/netconnectd.sock",
+			hostname=None,
+			timeout=10
+		)
 
 
 	##~~ TemplatePlugin API
