@@ -4,7 +4,7 @@
 		  <label class="control-label" for="settings_plugin_netconnectd_hostname">{{ _('Hostname') }}</label>
 		  <div class="controls">
 			  <div class="input-append">
-				  <input type="text" class="input" id="settings_plugin_netconnectd_hostname" data-bind="value: hostname, valueUpdate: 'afterkeydown', enable: $root.loginState.isUser()">
+				  <input type="text" class="input" id="settings_plugin_netconnectd_hostname" data-bind="value: hostname, enable: $root.loginState.isUser()">
 			  </div>
 		  </div>
 		</div>
