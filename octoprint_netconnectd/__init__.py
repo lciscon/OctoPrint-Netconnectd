@@ -96,6 +96,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		if command == "refresh_wifi":
 			return jsonify(self._get_wifi_list(force=True))
 
+		if command == "get_hostname":
+			return jsonify(self._get_hostname())
+
 		# any commands processed after this check require admin permissions
 		if not admin_permission.can():
 			return make_response("Insufficient rights", 403)
@@ -130,6 +133,14 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		)
 
 	##~~ Private helpers
+
+	def _get_hostname(self):
+		payload = dict()
+		result = []
+
+		result.append(dict(hostname=self.hostname()));
+		return result
+
 
 	def _get_wifi_list(self, force=False):
 		payload = dict()
