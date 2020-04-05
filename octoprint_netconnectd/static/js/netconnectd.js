@@ -14,8 +14,8 @@ $(function() {
         self.enableQualitySorting = ko.observable(false);
 
         self.hostname = ko.observable();
+		self.hostname("fred");  //BUGBUG HACKHACK FIXFIX
 
-		self.hostname = 'fred';  //BUGBUG HACKHACK FIXFIX
         self.status = {
             link: ko.observable(),
             connections: {
