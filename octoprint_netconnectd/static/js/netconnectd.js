@@ -73,7 +73,8 @@ $(function() {
         });
 
         self.daemonOnline = ko.computed(function() {
-            return (!(self.error()));
+			return true;  //BUGBUG HACKHACK FIXFIX
+//            return (!(self.error()));
         });
 
         self.apRunning = ko.computed(function() {
