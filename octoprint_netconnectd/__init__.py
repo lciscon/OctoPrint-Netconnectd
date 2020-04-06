@@ -27,7 +27,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	@property
 	def hostname(self):
-		r = self._exec_cmd("hostname")
+		r = "testme"
+//		r = self._exec_cmd("hostname")
 		return(r)
 
 #	@property
@@ -138,7 +139,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		payload = dict()
 		result = []
 
-		result.append(dict(hostname=self.hostname()));
+#		result.append(dict(hostname=self.hostname()));
+		result.append(dict(hostname="blah9"));
 		return result
 
 
