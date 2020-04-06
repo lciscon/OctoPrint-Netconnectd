@@ -112,7 +112,7 @@ $(function() {
 
         self.refresh = function() {
             self.requestData();
-			self.sendHostnameRefresh();
+//			self.sendHostnameRefresh();
         };
 
         self.fromResponse = function (response) {
