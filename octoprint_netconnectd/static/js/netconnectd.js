@@ -45,7 +45,6 @@ $(function() {
         self.connectionStateText = ko.computed(function() {
             var text;
 
-			self.sendHostnameRefresh();
             if (self.error()) {
                 text = gettext("Error while talking to netconnectd, is the service running?");
             } else if (self.status.connections.ap()) {
