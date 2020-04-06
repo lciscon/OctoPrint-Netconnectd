@@ -16,6 +16,12 @@ $(function() {
         self.hostname = ko.observable();
 //		self.hostname("octopi-default");  //BUGBUG HACKHACK FIXFIX
 
+		self.sendHostnameRefresh = function() {
+			self._postCommand("get_hostname", {}, function(response) {
+				self.fromResponse({"hostname": response});
+			});
+		};
+
         self.status = {
             link: ko.observable(),
             connections: {
@@ -214,13 +220,6 @@ $(function() {
             if (!self.loginState.isAdmin()) return;
             self._postCommand("stop_ap", {});
         };
-
-		self.sendHostnameRefresh = function() {
-            self._postCommand("get_hostname", {}, function(response) {
-                self.fromResponse({"hostname": response});
-            });
-        };
-
 
         self.sendWifiRefresh = function(force) {
             if (force === undefined) force = false;
