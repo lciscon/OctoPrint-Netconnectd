@@ -80,8 +80,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def on_api_get(self, request):
 		try:
-#			hostname = self._get_hostname()
-			hostname = self.hostname()
+			hostname = self._get_hostname()
 			status = self._get_status()
 			if status["wifi"]["present"]:
 				wifis = self._get_wifi_list()
