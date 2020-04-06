@@ -214,8 +214,9 @@ $(function() {
             self._postCommand("stop_ap", {});
         };
 
-		self.sendHostnameRefresh = function() {
-            self._postCommand("get_hostname", {}, function(response) {
+		self.sendHostnameRefresh = function(force) {
+			if (force === undefined) force = false;
+            self._postCommand("get_hostname", {force: force}, function(response) {
                 self.fromResponse({"hostname": response});
             });
         };

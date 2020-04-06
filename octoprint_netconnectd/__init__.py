@@ -68,6 +68,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return dict(
 			start_ap=[],
 			stop_ap=[],
+			get_hostname=[],
 			refresh_wifi=[],
 			configure_wifi=[],
 			forget_wifi=[],
@@ -79,6 +80,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def on_api_get(self, request):
 		try:
+			hostname = self._get_hostname()
 			status = self._get_status()
 			if status["wifi"]["present"]:
 				wifis = self._get_wifi_list()
@@ -90,7 +92,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return jsonify(dict(
 			wifis=wifis,
 			status=status,
-			hostname=self.hostname
+			hostname=hostname
 		))
 
 	def on_api_command(self, command, data):
