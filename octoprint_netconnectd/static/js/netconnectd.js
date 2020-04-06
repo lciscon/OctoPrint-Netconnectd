@@ -14,7 +14,6 @@ $(function() {
         self.enableQualitySorting = ko.observable(false);
 
         self.hostname = ko.observable();
-		self.sendHostnameRefresh();
 //		self.hostname("octopi-default");  //BUGBUG HACKHACK FIXFIX
 
         self.status = {
@@ -46,6 +45,7 @@ $(function() {
         self.connectionStateText = ko.computed(function() {
             var text;
 
+			self.sendHostnameRefresh();
             if (self.error()) {
                 text = gettext("Error while talking to netconnectd, is the service running?");
             } else if (self.status.connections.ap()) {
