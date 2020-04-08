@@ -27,7 +27,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	@property
 	def hostname(self):
-		r = "testme2"
+		r = str("testme2")
 #		r = self._exec_cmd("hostname")
 		return(r)
 
@@ -37,8 +37,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 #		if hostname:
 #			return hostname
 #		else:
-#			r = self._exec_cmd("hostname")
-#			return(r)
 ##			import socket
 ##			return socket.gethostname() + ".local"
 
