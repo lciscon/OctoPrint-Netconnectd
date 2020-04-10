@@ -266,7 +266,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			sock.close()
 
 
-__plugin_name__ = "Netconnectd Client"
+__plugin_name__ = "Network Setup"
 
 def __plugin_check__():
 	import sys
