@@ -338,11 +338,17 @@ $(function() {
             self.settings = self.settingsViewModel.settings;
         };
 
+
 //		self.onTabChange = function(current, next) {
-			//BUGBUG HACKHACK FIXFIX only do this if our tab becomes visible
+//			//BUGBUG HACKHACK FIXFIX only do this if our tab becomes visible
 //			self.pollingEnabled = true;
 //            self.requestData();
 //		};
+
+		self.onStartup = function() {
+			self.pollingEnabled = true;
+			self.requestData();
+		};
 
         self.onSettingsShown = function() {
             self.pollingEnabled = true;
