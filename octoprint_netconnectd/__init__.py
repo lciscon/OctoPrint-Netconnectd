@@ -137,9 +137,13 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	##~~ Private helpers
 
 	def _get_hostname(self):
-		result = []
-		result.append(dict(hostname=self.hostname))
+		result = self.hostname
 		return result
+
+#	def _get_hostname(self):
+#		result = []
+#		result.append(dict(hostname=self.hostname))
+#		return result
 
 	def _get_wifi_list(self, force=False):
 		payload = dict()
