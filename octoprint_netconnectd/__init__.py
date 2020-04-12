@@ -215,10 +215,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 #			r = os.system(cmd_line)
 			process = subprocess.run(cmd_line, check=True, stdout=subprocess.PIPE, universal_newlines=True)
 			r = process.stdout
-		except:
-#			e = sys.exc_info()[0]
-#			self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
-			self._logger.exception("Error executing command ID %s" % (cmd_id))
+		except Exception as e:
+			output = "Error while ececuting command: {}".format(e)
+			self._logger.warn(output)
 			return (None,)
 
 		self._logger.info("Command %s returned: %s" % (cmd_line, r))
