@@ -224,7 +224,7 @@ $(function() {
         };
 
 		self.saveHostname = function() {
-			self._postCommand("set_hostname", {newname: hostname});
+			self._postCommand("set_hostname", {newname: self.hostname()});
 		};
 
         self.sendWifiRefresh = function(force) {
