@@ -102,6 +102,11 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			self._logger.info("Returning hostname "+ self._get_hostname())
 			return jsonify(dict(hostname=str(self._get_hostname())))
 
+		elif command == "set_hostname":
+			self._logger.info("Setting hostname to "+ data["newname"])
+			self._set_hostname(data["newname"])
+			return;
+
 		# any commands processed after this check require admin permissions
 		if not admin_permission.can():
 			return make_response("Insufficient rights", 403)
@@ -113,11 +118,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				self._logger.info("Configuring wifi {ssid}...".format(**data))
 
 			self._configure_and_select_wifi(data["ssid"], data["psk"], force=data["force"] if "force" in data else False)
-
-		elif command == "set_hostname":
-			self._logger.info("Setting hostname to "+ data["newname"])
-			self._set_hostname(data["newname"])
-			return;
 
 		elif command == "forget_wifi":
 			self._forget_wifi()
