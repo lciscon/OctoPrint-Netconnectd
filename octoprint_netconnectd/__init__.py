@@ -148,7 +148,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return result
 
 	def _set_hostname(self, newname):
-		self._exec_cmd("/usr/bin/sudo hostname " + newname)
+		self._exec_cmd("hostname " + newname)
 
 #	def _get_hostname(self):
 #		result = []
