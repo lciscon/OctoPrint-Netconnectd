@@ -148,7 +148,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return result
 
 	def _set_hostname(self, newname):
-		self._exec_cmd(["hostname ",newname])
+#		self._exec_cmd("hostname " + newname)
+		self._exec_cmd(["hostname",newname])
 
 #	def _get_hostname(self):
 #		result = []
@@ -227,6 +228,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 #			r = process.stdout
 #			Python 2
 			r = subprocess.check_output(cmd_line).decode()
+#			r = subprocess.check_output(cmd_line, shell=True).decode()
 		except Exception as e:
 			output = "Error while ececuting command: {}".format(e)
 			self._logger.warn(output)
