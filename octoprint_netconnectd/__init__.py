@@ -11,6 +11,7 @@ from flask import jsonify, make_response
 
 import octoprint.plugin
 import os
+import subprocess
 
 from octoprint.server import admin_permission
 
@@ -212,10 +213,12 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		self._logger.info("Executing command: %s" % (cmd_line))
 		try:
 #			r = os.system(cmd_line)
-			r = os.subprocess.getoutput(cmd_line)
+			process = subprocess.run(cmd_line, check=True, stdout=subprocess.PIPE, universal_newlines=True)
+			r = process.stdout
 		except:
-			e = sys.exc_info()[0]
-			self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
+#			e = sys.exc_info()[0]
+#			self._logger.exception("Error executing command ID %s: %s" % (cmd_id, e))
+			self._logger.exception("Error executing command ID %s" % (cmd_id))
 			return (None,)
 
 		self._logger.info("Command %s returned: %s" % (cmd_line, r))
