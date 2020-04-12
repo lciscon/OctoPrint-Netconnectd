@@ -346,7 +346,7 @@ $(function() {
 //		};
 
 		self.onStartup = function() {
-			self.pollingEnabled = true;
+//			self.pollingEnabled = true;
 			self.requestData();
 		};
 
