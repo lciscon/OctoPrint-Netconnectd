@@ -126,23 +126,24 @@ $(function() {
 
             self.hostname(response.hostname);
 
-            self.status.link(response.status.link);
-            self.status.connections.ap(response.status.connections.ap);
-            self.status.connections.wifi(response.status.connections.wifi);
-            self.status.connections.wired(response.status.connections.wired);
-            self.status.wifi.current_ssid(response.status.wifi.current_ssid);
-            self.status.wifi.current_address(response.status.wifi.current_address);
-            self.status.wifi.present(response.status.wifi.present);
+			if (response.status !== undefined) {
+	            self.status.link(response.status.link);
+	            self.status.connections.ap(response.status.connections.ap);
+	            self.status.connections.wifi(response.status.connections.wifi);
+	            self.status.connections.wired(response.status.connections.wired);
+	            self.status.wifi.current_ssid(response.status.wifi.current_ssid);
+	            self.status.wifi.current_address(response.status.wifi.current_address);
+	            self.status.wifi.present(response.status.wifi.present);
 
-            self.statusCurrentWifi(undefined);
-            if (response.status.wifi.current_ssid && response.status.wifi.current_address) {
-                _.each(response.wifis, function(wifi) {
-                    if (wifi.ssid == response.status.wifi.current_ssid && wifi.address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
-                        self.statusCurrentWifi(self.getEntryId(wifi));
-                    }
-                });
-            }
-
+	            self.statusCurrentWifi(undefined);
+	            if (response.status.wifi.current_ssid && response.status.wifi.current_address) {
+	                _.each(response.wifis, function(wifi) {
+	                    if (wifi.ssid == response.status.wifi.current_ssid && wifi.address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
+	                        self.statusCurrentWifi(self.getEntryId(wifi));
+	                    }
+	                });
+	            }
+			}
             var enableQualitySorting = false;
             _.each(response.wifis, function(wifi) {
                 if (wifi.quality != undefined) {
