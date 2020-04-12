@@ -98,7 +98,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			return jsonify(self._get_wifi_list(force=True))
 
 		if command == "get_hostname":
-			self._logger.info("Returning hostname "+ self_.get_hostname())
+			self._logger.info("Returning hostname "+ self._get_hostname())
 			return jsonify(dict(hostname=str(self._get_hostname())))
 
 		# any commands processed after this check require admin permissions
