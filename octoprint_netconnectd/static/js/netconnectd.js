@@ -217,7 +217,8 @@ $(function() {
 		self.sendHostnameRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_hostname", {force: force}, function(response) {
-                self.fromResponse({"hostname": response});
+				self.hostname(response.hostname);
+//                self.fromResponse({"hostname": response});
             });
         };
 
