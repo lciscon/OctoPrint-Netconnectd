@@ -114,6 +114,11 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 			self._configure_and_select_wifi(data["ssid"], data["psk"], force=data["force"] if "force" in data else False)
 
+		else if command == "set_hostname":
+			self._logger.info("Setting hostname to "+ data["newname"])
+			self._set_hostname(data["newname"])
+			return;
+
 		elif command == "forget_wifi":
 			self._forget_wifi()
 
@@ -140,6 +145,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	def _get_hostname(self):
 		result = self.hostname
 		return result
+
+	def _set_hostname(self, newname):
+		self._exec_cmd("hostname " + newname)
 
 #	def _get_hostname(self):
 #		result = []

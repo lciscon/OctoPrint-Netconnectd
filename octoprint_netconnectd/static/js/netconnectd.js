@@ -223,6 +223,10 @@ $(function() {
             });
         };
 
+		self.saveHostname = function() {
+			self._postCommand("set_hostname", {newname: hostname});
+		};
+
         self.sendWifiRefresh = function(force) {
             if (force === undefined) force = false;
             self._postCommand("list_wifi", {force: force}, function(response) {

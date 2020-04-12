@@ -6,6 +6,7 @@
 			  <div class="input-append">
 				  <input type="text" class="input" id="settings_plugin_netconnectd_hostname" data-bind="value: hostname, enable: $root.loginState.isUser()">
 			  </div>
+			  <button class="btn btn-primary btn-block" data-bind="click: function() { $root.saveHostname() }, enable: $root.loginState.isUser()">{{ _('Save') }}</button>
 		  </div>
 		</div>
 	</form>
