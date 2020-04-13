@@ -230,7 +230,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 #			r = subprocess.check_output(cmd_line).decode()
 			r = subprocess.check_output(cmd_line, shell=True).decode()
 		except Exception as e:
-			output = "Error while ececuting command: {}".format(e)
+			output = "Error while ececuting command: {}".format(e.output)
 			self._logger.warn(output)
 			return (None,)
 
