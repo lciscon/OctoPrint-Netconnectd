@@ -149,12 +149,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def _set_hostname(self, newname):
 		self._exec_cmd("sethostname " + newname)
-#		self._exec_cmd(["sudo","hostname",newname])
-
-#	def _get_hostname(self):
-#		result = []
-#		result.append(dict(hostname=self.hostname))
-#		return result
 
 	def _get_wifi_list(self, force=False):
 		payload = dict()
