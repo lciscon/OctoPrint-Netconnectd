@@ -1,15 +1,41 @@
 <div id="setting_plugin_netconnectd_dialog" data-bind="allowBindings: true">
-	<div class="pull-right">
-		<form class="form-inline">
-			<div class="form-group">
-		     	<label class="control-label" for="settings_plugin_netconnectd_hostname">{{ _('Hostname') }}</label>
-		     	<input type="text" class="input" id="settings_plugin_netconnectd_hostname" data-bind="value: hostname, enable: $root.loginState.isUser()">
-		  	</div>
-			<div class="form-group">
-				<button class="btn btn-primary btn-block" data-bind="click: function() { $root.saveHostname() }, enable: $root.loginState.isUser()">{{ _('Save') }}</button>
+
+	<h1>{{ _('Network Configuration') }}</h1>
+
+	<form class="form-horizontal">
+		<div class="control-group">
+			<div class="controls">
+				<input type="text" class="input" id="settings_plugin_netconnectd_hostname" data-bind="value: hostname, enable: $root.loginState.isUser()">
 			</div>
-		</form>
-	</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="settings_plugin_netconnectd_ssid">{{ _('Wifi SSID') }}</label>
+			<div class="controls">
+				<input type="text" class="input" id="settings_plugin_netconnectd_ssid" data-bind="value: current_ssid, enable: $root.loginState.isUser()">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<label class="control-label" for="settings_plugin_netconnectd_hostname">{{ _('Current Address') }}</label>
+			<div class="controls">
+				<input type="text" class="input" id="settings_plugin_netconnectd_address" data-bind="value: current_address, enable: $root.loginState.isUser()">
+			</div>
+		</div>
+
+		<div class="control-group">
+			<div class="controls">
+				<strong class="text-center text-block" data-bind="visible: saveButtonEnabled">{{ _('You have unsaved changes. Don\'t forget to save them.') }}</strong>
+				<button class="btn btn-primary btn-block" data-bind="click: save, enable: saveButtonEnabled">{{ _('Save changes') }}</button>
+				<button class="btn btn-block" data-bind="click: reset, enable: resetButtonEnabled">{{ _('Reset to active configuration') }}</button>
+			</div>
+		</div>
+	</form>
+
+	<h1>{{ _('WiFi Networks') }}</h1>
+
+
+
     <p>
         <strong>{{ _('Connection state') }}:</strong> <span data-bind="text: connectionStateText"></span>
     </p>

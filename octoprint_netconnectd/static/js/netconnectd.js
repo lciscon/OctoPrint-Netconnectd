@@ -205,6 +205,18 @@ $(function() {
             });
         };
 
+		self.save = function() {
+				self.saveHostname();
+		};
+
+		self.saveButtonEnabled = function() {
+				return true;
+		};
+
+		self.resetButtonEnabled = function() {
+				return true;
+		};
+
         self.sendStartAp = function() {
             if (!self.loginState.isAdmin()) return;
             self._postCommand("start_ap", {});
