@@ -238,7 +238,6 @@ $(function() {
 			if (force === undefined) force = false;
             self._postCommand("get_hostname", {force: force}, function(response) {
 				self.hostname(response.hostname);
-//                self.fromResponse({"hostname": response});
             });
         };
 
@@ -361,15 +360,15 @@ $(function() {
             self.settings = self.settingsViewModel.settings;
         };
 
-		self.onTabChange = function(current, next) {
+//		self.onTabChange = function(current, next) {
 //			//BUGBUG HACKHACK FIXFIX only do this if our tab becomes visible
 //			self.pollingEnabled = true;
-            self.requestData();
-		};
+//            self.refresh();
+//		};
 
 		self.onStartup = function() {
 //			self.pollingEnabled = true;
-			self.requestData();
+			self.refresh();
 		};
 
         self.onSettingsShown = function() {
