@@ -114,6 +114,10 @@ $(function() {
 			self.sendHostnameRefresh();
         };
 
+		self.refresh = function() {
+			// TODO
+		};
+
         self.fromResponse = function (response) {
             if (response.error !== undefined) {
 				self.error(false);
