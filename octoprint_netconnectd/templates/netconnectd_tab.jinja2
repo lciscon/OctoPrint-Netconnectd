@@ -13,14 +13,14 @@
 		<div class="control-group">
 			<label class="control-label" for="settings_plugin_netconnectd_ssid">{{ _('Wifi SSID') }}</label>
 			<div class="controls">
-				<input type="text" class="input" id="settings_plugin_netconnectd_ssid" data-bind="value: current_ssid, enable: $root.loginState.isUser()">
+				<input type="text" class="input" id="settings_plugin_netconnectd_ssid" data-bind="value: status.wifi.current_ssid, enable: $root.loginState.isUser()">
 			</div>
 		</div>
 
 		<div class="control-group">
 			<label class="control-label" for="settings_plugin_netconnectd_hostname">{{ _('Current Address') }}</label>
 			<div class="controls">
-				<input type="text" class="input" id="settings_plugin_netconnectd_address" data-bind="value: current_address, enable: $root.loginState.isUser()">
+				<input type="text" class="input" id="settings_plugin_netconnectd_address" data-bind="value: status.wifi.current_address, enable: $root.loginState.isUser()">
 			</div>
 		</div>
 

@@ -14,7 +14,6 @@ $(function() {
         self.enableQualitySorting = ko.observable(false);
 
         self.hostname = ko.observable();
-//		self.hostname("octopi-default");  //BUGBUG HACKHACK FIXFIX
 
         self.status = {
             link: ko.observable(),
