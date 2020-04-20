@@ -23,8 +23,8 @@ $(function() {
                 wired: ko.observable()
             },
             wifi: {
-                current_ssid: ko.observable(),
-                current_address: ko.observable(),
+                current_ssid: ko.observable('blah'),
+                current_address: ko.observable('192.168.1.1'),
                 present: ko.observable()
             }
         };
