@@ -66,8 +66,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def get_api_commands(self):
 		return dict(
-			start_ap=[],
-			stop_ap=[],
 			get_hostname=[],
 			get_ssid=[],
 			get_address=[],
@@ -136,12 +134,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 		elif command == "reset":
 			self._reset()
-
-		elif command == "start_ap":
-			self._start_ap()
-
-		elif command == "stop_ap":
-			self._stop_ap()
 
 	##~~ AssetPlugin API
 
@@ -220,18 +212,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		if not flag:
 			raise RuntimeError("Error while factory resetting netconnectd: " + content)
 
-	def _start_ap(self):
-		payload = dict()
-		flag, content = self._send_message("start_ap", payload)
-		if not flag:
-			raise RuntimeError("Error while starting ap: " + content)
-
-	def _stop_ap(self):
-		payload = dict()
-		flag, content = self._send_message("stop_ap", payload)
-		if not flag:
-			raise RuntimeError("Error while stopping ap: " + content)
-
 	def _exec_cmd(self, cmd_line):
 		self._logger.info("Executing command: %s" % (cmd_line))
 		try:
@@ -253,52 +233,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 # TESTTEST BUGBUG HACKHACK
 	def _send_message(self, message, data):
 		return True, response["result abc"]
-
-	def _send_message2(self, message, data):
-		obj = dict()
-		obj[message] = data
-
-		import json
-		js = json.dumps(obj, encoding="utf8", separators=(",", ":"))
-
-		import socket
-		sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
-		sock.settimeout(self._settings.get_int(["timeout"]))
-		try:
-			sock.connect(self.address)
-			sock.sendall(js + '\x00')
-
-			buffer = []
-			while True:
-				chunk = sock.recv(16)
-				if chunk:
-					buffer.append(chunk)
-					if chunk.endswith('\x00'):
-						break
-
-			data = ''.join(buffer).strip()[:-1]
-
-			response = json.loads(data.strip())
-			if "result" in response:
-				return True, response["result"]
-
-			elif "error" in response:
-				# something went wrong
-				self._logger.warn("Request to netconnectd went wrong: " + response["error"])
-				return False, response["error"]
-
-			else:
-				output = "Unknown response from netconnectd: {response!r}".format(response=response)
-				self._logger.warn(output)
-				return False, output
-
-		except Exception as e:
-			output = "Error while talking to netconnectd: {}".format(e)
-			self._logger.warn(output)
-			return False, output
-
-		finally:
-			sock.close()
 
 
 __plugin_name__ = "Network Setup"
