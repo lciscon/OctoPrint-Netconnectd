@@ -32,6 +32,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		r = self._exec_cmd("hostname")
 		return(r)
 
+
 #	@property
 #	def hostname(self):
 #		hostname = self._settings.get(["hostname"])
@@ -68,6 +69,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			start_ap=[],
 			stop_ap=[],
 			get_hostname=[],
+			get_ssid=[],
+			get_address=[],
 			set_hostname=["newname"],
 			refresh_wifi=[],
 			configure_wifi=[],
@@ -107,6 +110,14 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			self._logger.info("Setting hostname to "+ data["newname"])
 			self._set_hostname(data["newname"])
 			return;
+
+		elif command == "get_ssid":
+			self._logger.info("Returning ssid "+ self._get_ssid())
+			return jsonify(dict(ssid=str(self._get_ssid())))
+
+		elif command == "get_address":
+			self._logger.info("Returning address "+ self._get_address())
+			return jsonify(dict(address=str(self._get_address())))
 
 		# any commands processed after this check require admin permissions
 		if not admin_permission.can():
@@ -149,6 +160,14 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def _set_hostname(self, newname):
 		self._exec_cmd("sethostname " + newname)
+
+	def _get_ssid(self):
+		r = self._exec_cmd("netcmd ssid")
+		return r
+
+	def _get_address(self):
+		r = self._exec_cmd("netcmd address")
+		return r
 
 	def _get_wifi_list(self, force=False):
 		payload = dict()

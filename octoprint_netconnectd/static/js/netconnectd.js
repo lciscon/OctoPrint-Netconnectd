@@ -23,8 +23,8 @@ $(function() {
                 wired: ko.observable()
             },
             wifi: {
-                current_ssid: ko.observable('blah'),
-                current_address: ko.observable('192.168.1.1'),
+                current_ssid: ko.observable(),
+                current_address: ko.observable(),
                 present: ko.observable()
             }
         };
@@ -61,7 +61,7 @@ $(function() {
                     text = gettext("Connected (unknown connection)");
                 }
             } else {
-                text = gettext("Not connected to network " + self.hostname());  //BUGBUG HACKHACK FIXFIX
+                text = gettext("Not connected to network ");
             }
 
             if (!self.status.wifi.present()) {
@@ -112,6 +112,8 @@ $(function() {
         self.refresh = function() {
             self.requestData();
 			self.sendHostnameRefresh();
+			self.sendSSIDRefresh();
+			self.sendAddressRefresh();
         };
 
 		self.reset = function() {
@@ -132,8 +134,6 @@ $(function() {
             }
 
             self.hostname(response.hostname);
-
-			return; //BUGBUG HACKHACK FIXFIX
 
             self.status.link(response.status.link);
             self.status.connections.ap(response.status.connections.ap);
@@ -241,6 +241,20 @@ $(function() {
             });
         };
 
+		self.sendSSIDRefresh = function(force) {
+			if (force === undefined) force = false;
+            self._postCommand("get_ssid", {force: force}, function(response) {
+				self.hostname(response.ssid);
+            });
+        };
+
+		self.sendAddressRefresh = function(force) {
+			if (force === undefined) force = false;
+            self._postCommand("get_address", {force: force}, function(response) {
+				self.hostname(response.address);
+            });
+        };
+
 		self.saveHostname = function() {
 			self._postCommand("set_hostname", {newname: self.hostname()});
 		};
@@ -264,13 +278,13 @@ $(function() {
                 showOfflineOverlay(
                     gettext("Reconnecting..."),
                     _.sprintf(reconnectText, {hostname: self.hostname()}),
-                    self.tryReconnect
+//                    self.tryReconnect
                 );
             }
             self._postCommand("configure_wifi", {ssid: ssid, psk: psk}, successCallback, failureCallback, function() {
                 self.working(false);
                 if (self.reconnectInProgress) {
-                    self.tryReconnect();
+//                    self.tryReconnect();
                 }
             }, 5000);
         };
@@ -284,29 +298,6 @@ $(function() {
         self.sendForgetWifi = function() {
             if (!self.loginState.isAdmin()) return;
             self._postCommand("forget_wifi", {});
-        };
-
-        self.tryReconnect = function() {
-            var hostname = self.hostname();
-
-            var location = window.location.href
-            location = location.replace(location.match("https?\\://([^:@]+(:[^@]+)?@)?([^:/]+)")[3], hostname);
-
-            var pingCallback = function(result) {
-                if (!result) {
-                    return;
-                }
-
-                if (self.reconnectTimeout != undefined) {
-                    clearTimeout(self.reconnectTimeout);
-                    window.location.replace(location);
-                }
-                hideOfflineOverlay();
-                self.reconnectInProgress = false;
-            };
-
-            ping(location, pingCallback);
-            self.reconnectTimeout = setTimeout(self.tryReconnect, 1000);
         };
 
         self._postCommand = function (command, data, successCallback, failureCallback, alwaysCallback, timeout) {
@@ -359,12 +350,6 @@ $(function() {
         self.onBeforeBinding = function() {
             self.settings = self.settingsViewModel.settings;
         };
-
-//		self.onTabChange = function(current, next) {
-//			//BUGBUG HACKHACK FIXFIX only do this if our tab becomes visible
-//			self.pollingEnabled = true;
-//            self.refresh();
-//		};
 
 		self.onStartup = function() {
 //			self.pollingEnabled = true;
