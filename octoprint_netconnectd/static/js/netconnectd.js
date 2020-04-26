@@ -127,10 +127,10 @@ $(function() {
 
             self.hostname(response.hostname);
 
-            self.status.link(response.status.link);
-            self.status.connections.ap(response.status.connections.ap);
-            self.status.connections.wifi(response.status.connections.wifi);
-            self.status.connections.wired(response.status.connections.wired);
+//            self.status.link(response.status.link);
+//            self.status.connections.ap(response.status.connections.ap);
+//            self.status.connections.wifi(response.status.connections.wifi);
+//            self.status.connections.wired(response.status.connections.wired);
             self.status.wifi.current_ssid(response.status.wifi.current_ssid);
             self.status.wifi.current_address(response.status.wifi.current_address);
             self.status.wifi.present(response.status.wifi.present);
