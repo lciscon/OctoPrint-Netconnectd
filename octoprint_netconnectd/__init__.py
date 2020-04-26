@@ -180,20 +180,23 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			row = rowval.lstrip()
 			if row.startswith("Cell"):
 				sub1 = row.split('-')
-				row = sub1.lstrip();
+				if (sub1[1]):
+					row = sub1[1].lstrip();
 
 			self._logger.info("scanning row:" + str(row))
 			if row.startswith("Quality"):
 				sub1 = row.split(' ')
-				sub2 = row.split('=')
-				cur_signal = sub2[1]
+				sub2 = sub1[0].split('=')
+				if (sub2[1]):
+					cur_signal = sub2[1]
 			elif row.startswith("Encryption"):
 				sub1 = row.split(':')
-				cur_encrypted = sub1[1]
+				if (sub1[1]):
+					cur_encrypted = sub1[1]
 			elif row.startswith("Address"):
 				sub1 = row.split(': ')
-				if (sub1[1])
-				cur_address = sub1[1]
+				if (sub1[1]):
+					cur_address = sub1[1]
 			elif row.startswith("ESSID"):
 				sub1 = row.split('"')
 				if sub1[1]:
