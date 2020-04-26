@@ -153,19 +153,19 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return result
 
 	def _set_hostname(self, newname):
-		self._exec_cmd("sethostname " + newname)
+		self._exec_cmd("sudo sethostname " + newname)
 
 	def _get_ssid(self):
-		r = self._exec_cmd("netcmd ssid")
+		r = self._exec_cmd("sudo netcmd ssid")
 		return r
 
 	def _get_address(self):
-		r = self._exec_cmd("netcmd address")
+		r = self._exec_cmd("sudo netcmd address")
 		return r
 
 	def _get_wifi_list(self, force=False):
 
-		r = self._exec_cmd("netcmd wifis")
+		r = self._exec_cmd("sudo netcmd wifis")
 		lines = r.split('"\n')
 		result = []
 		cur_signal = "0"
