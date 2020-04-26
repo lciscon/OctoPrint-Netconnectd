@@ -176,8 +176,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		cur_encrypted = False
 		cur_address = "0"
 		cur_ssid = ""
-		for row in lines:
-			row = row.lstrip(' ')
+		for rowval in lines:
+			row = rowval.lstrip(' ')
+			self._logger.info("scanning row:" + str(row))
 			if row.startswith("Quality"):
 				sub1 = row.split(' ')
 				sub2 = row.split('=')
