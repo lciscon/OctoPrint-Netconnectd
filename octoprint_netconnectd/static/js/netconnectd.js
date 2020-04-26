@@ -71,15 +71,6 @@ $(function() {
             return text;
         });
 
-        self.daemonOnline = ko.computed(function() {
-			return (true);  //BUGBUG HACKHACK FIXFIX
-//            return (!(self.error()));
-        });
-
-        self.apRunning = ko.computed(function() {
-            return self.status.connections.ap();
-        });
-
         // initialize list helper
         self.listHelper = new ItemListHelper(
             "wifis",
@@ -110,7 +101,8 @@ $(function() {
         };
 
         self.refresh = function() {
-            self.requestData();
+//            self.requestData();
+			self.sendWifiRefresh();
 			self.sendHostnameRefresh();
 			self.sendSSIDRefresh();
 			self.sendAddressRefresh();
@@ -151,6 +143,7 @@ $(function() {
                     }
                 });
             }
+
             var enableQualitySorting = false;
             _.each(response.wifis, function(wifi) {
                 if (wifi.quality != undefined) {
@@ -342,7 +335,7 @@ $(function() {
         };
 
 		self.onStartup = function() {
-//			self.pollingEnabled = true;
+			self.pollingEnabled = true;
 			self.refresh();
 		};
 

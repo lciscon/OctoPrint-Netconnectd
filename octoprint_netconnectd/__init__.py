@@ -82,11 +82,12 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	def on_api_get(self, request):
 		try:
 			hostname = self._get_hostname()
-			status = self._get_status()
-			if status["wifi"]["present"]:
+			status = "online"
+#			status = self._get_status()
+#			if status["wifi"]["present"]:
 				wifis = self._get_wifi_list()
-			else:
-				wifis = []
+#			else:
+#				wifis = []
 		except Exception as e:
 			return jsonify(dict(error=str(e)))
 
@@ -97,7 +98,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		))
 
 	def on_api_command(self, command, data):
-		if command == "refresh_wifi":
+		if command == "list_wifi":
 			return jsonify(self._get_wifi_list(force=True))
 
 		if command == "get_hostname":
@@ -162,6 +163,34 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return r
 
 	def _get_wifi_list(self, force=False):
+
+		r = self._exec_cmd("netcmd wifis")
+		lines = r.split('"\n')
+		result = []
+		cur_signal = "0"
+		cur_encrypted = false
+		cur_address = "0"
+		cur_ssid = ""
+		for row in lines:
+			if row.startsWith("Quality")
+				sub1 = row.split(' ')
+				sub2 = row.split('=')
+				cur_signal = sub2[1]
+			elif row.startsWith("Encryption")
+				sub1 = row.split(':')
+				cur_encrypted = sub1[1]
+			elif row.startsWith("Address")
+				sub1 = row.split(': ')
+				cur_address = sub1[1]
+			elif row.startsWith("ESSID")
+				sub1 = row.split('"')
+				cur_ssid = sub1[1]
+				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
+			endif
+
+		return result
+
+	def _get_wifi_list2(self, force=False):
 		payload = dict()
 		if force:
 			self._logger.info("Forcing wifi refresh...")
