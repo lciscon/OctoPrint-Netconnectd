@@ -178,6 +178,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		cur_ssid = ""
 		for rowval in lines:
 			row = rowval.lstrip()
+			if row.startswith("Cell"):
+				sub1 = row.split('-')
+				row = sub1.lstrip();
+
 			self._logger.info("scanning row:" + str(row))
 			if row.startswith("Quality"):
 				sub1 = row.split(' ')
@@ -188,11 +192,13 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				cur_encrypted = sub1[1]
 			elif row.startswith("Address"):
 				sub1 = row.split(': ')
+				if (sub1[1])
 				cur_address = sub1[1]
 			elif row.startswith("ESSID"):
 				sub1 = row.split('"')
-				cur_ssid = sub1[1]
-				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
+				if sub1[1]:
+					cur_ssid = sub1[1]
+					result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
 
 		self._logger.info("Returning wifi list " + str(result))
 
