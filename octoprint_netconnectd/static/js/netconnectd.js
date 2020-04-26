@@ -128,14 +128,14 @@ $(function() {
 			if (response.hostname)
             	self.hostname(response.hostname);
 
-			if response.status {
+			if (response.status) {
 //				if response.status.link
 //	              self.status.link(response.status.link);
 //				if response.status.connections
 //  	          self.status.connections.ap(response.status.connections.ap);
 //      	      self.status.connections.wifi(response.status.connections.wifi);
 //          	  self.status.connections.wired(response.status.connections.wired);
-				if response.status.wifi {
+				if (response.status.wifi) {
 		            self.status.wifi.current_ssid(response.status.wifi.current_ssid);
 		            self.status.wifi.current_address(response.status.wifi.current_address);
 		            self.status.wifi.present(response.status.wifi.present);
@@ -151,7 +151,7 @@ $(function() {
 				}
 			}
 
-			if response.wifis {
+			if (response.wifis) {
 	            var enableQualitySorting = false;
 	            _.each(response.wifis, function(wifi) {
 	                if (wifi.quality != undefined) {
