@@ -173,17 +173,17 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		cur_address = "0"
 		cur_ssid = ""
 		for row in lines:
-			if row.startswith('Quality')
+			if row.startswith("Quality"):
 				sub1 = row.split(' ')
 				sub2 = row.split('=')
 				cur_signal = sub2[1]
-			elif row.startswith('Encryption')
+			elif row.startswith("Encryption"):
 				sub1 = row.split(':')
 				cur_encrypted = sub1[1]
-			elif row.startswith('Address')
+			elif row.startswith("Address"):
 				sub1 = row.split(': ')
 				cur_address = sub1[1]
-			elif row.startswith('ESSID')
+			elif row.startswith("ESSID"):
 				sub1 = row.split('"')
 				cur_ssid = sub1[1]
 				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
