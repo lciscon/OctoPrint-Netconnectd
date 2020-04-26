@@ -146,7 +146,7 @@ $(function() {
             self.statusCurrentWifi(undefined);
             if (response.status.wifi.current_ssid && response.status.wifi.current_address) {
                 _.each(response.wifis, function(wifi) {
-                    if (wifi.ssid == response.status.wifi.current_ssid && wifi.address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
+                    if (wifi.current_ssid == response.status.wifi.current_ssid && wifi.current_address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
                         self.statusCurrentWifi(self.getEntryId(wifi));
                     }
                 });
@@ -168,8 +168,8 @@ $(function() {
                 }
 
                 wifis.push({
-                    ssid: wifi.ssid,
-                    address: wifi.address,
+                    ssid: wifi.current_ssid,
+                    address: wifi.current_address,
                     encrypted: wifi.encrypted,
                     quality: quality,
                     qualityText: (quality != undefined) ? "" + quality + " dBm" : undefined
@@ -234,14 +234,14 @@ $(function() {
 		self.sendSSIDRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_ssid", {force: force}, function(response) {
-				self.status.wifi.ssid(response.ssid);
+				self.status.wifi.current_ssid(response.ssid);
             });
         };
 
 		self.sendAddressRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_address", {force: force}, function(response) {
-				self.status.wifi.address(response.address);
+				self.status.wifi.current_address(response.address);
             });
         };
 
