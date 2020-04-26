@@ -186,9 +186,11 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			self._logger.info("scanning row:" + str(row))
 			if row.startswith("Quality"):
 				sub1 = row.split(' ')
-				sub2 = sub1[0].split('=')
-				if (sub2[1]):
-					cur_signal = sub2[1]
+				cur_signal = 0
+				if sub1[0]:
+					sub2 = sub1[0].split('=')
+					sub3 = sub2[1].split('/')
+					cur_signal = sub3[0]
 			elif row.startswith("Encryption"):
 				sub1 = row.split(':')
 				if (sub1[1]):
