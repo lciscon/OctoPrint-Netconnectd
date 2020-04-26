@@ -158,7 +158,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def _get_ssid(self):
 		r = self._exec_cmd("sudo netcmd ssid")
-		self._logger.info("Returning ssid " + r)		
+		self._logger.info("Returning ssid " + r)
 		return r
 
 	def _get_address(self):
@@ -189,6 +189,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				sub1 = row.split('"')
 				cur_ssid = sub1[1]
 				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
+
+		self._logger.info("Returning wifi list " + result)
 
 		return result
 
