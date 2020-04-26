@@ -101,7 +101,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def on_api_command(self, command, data):
 		if command == "list_wifi":
-			return jsonify(self._get_wifi_list(force=True))
+			return jsonify(dict(wifis=self._get_wifi_list(force=True)))
 
 		if command == "get_hostname":
 			self._logger.info("Returning hostname "+ self._get_hostname())
