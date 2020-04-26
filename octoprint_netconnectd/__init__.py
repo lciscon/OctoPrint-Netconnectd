@@ -83,9 +83,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		try:
 			hostname = self._get_hostname()
 			status = "online"
+			wifis = self._get_wifi_list()
 #			status = self._get_status()
 #			if status["wifi"]["present"]:
-				wifis = self._get_wifi_list()
+#				wifis = self._get_wifi_list()
 #			else:
 #				wifis = []
 		except Exception as e:
