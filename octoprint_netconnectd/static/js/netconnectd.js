@@ -224,16 +224,6 @@ $(function() {
 				return true;
 		};
 
-        self.sendStartAp = function() {
-            if (!self.loginState.isAdmin()) return;
-            self._postCommand("start_ap", {});
-        };
-
-        self.sendStopAp = function() {
-            if (!self.loginState.isAdmin()) return;
-            self._postCommand("stop_ap", {});
-        };
-
 		self.sendHostnameRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_hostname", {force: force}, function(response) {
@@ -244,14 +234,14 @@ $(function() {
 		self.sendSSIDRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_ssid", {force: force}, function(response) {
-				self.hostname(response.ssid);
+				self.status.wifi.ssid(response.ssid);
             });
         };
 
 		self.sendAddressRefresh = function(force) {
 			if (force === undefined) force = false;
             self._postCommand("get_address", {force: force}, function(response) {
-				self.hostname(response.address);
+				self.status.wifi.address(response.address);
             });
         };
 
