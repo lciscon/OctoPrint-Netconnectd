@@ -190,7 +190,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				cur_ssid = sub1[1]
 				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
 
-		self._logger.info("Returning wifi list " + result)
+		self._logger.info("Returning wifi list " + str(result))
 
 		return result
 
