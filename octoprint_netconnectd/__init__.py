@@ -193,8 +193,13 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 					cur_signal = sub3[0]
 			elif row.startswith("Encryption"):
 				sub1 = row.split(':')
+				encryptstr = "off"
 				if (sub1[1]):
-					cur_encrypted = sub1[1]
+					encryptstr = sub1[1]
+				if encryptstr = "on":
+					cur_encrypted = True
+				else:
+					cur_encrypted = False
 			elif row.startswith("Address"):
 				sub1 = row.split(': ')
 				if (sub1[1]):

@@ -173,8 +173,8 @@ $(function() {
 	                }
 
 	                wifis.push({
-	                    ssid: wifi.current_ssid,
-	                    address: wifi.current_address,
+	                    ssid: wifi.ssid,
+	                    address: wifi.address,
 	                    encrypted: wifi.encrypted,
 	                    quality: quality,
 	                    qualityText: (quality != undefined) ? "" + quality + " dBm" : undefined
