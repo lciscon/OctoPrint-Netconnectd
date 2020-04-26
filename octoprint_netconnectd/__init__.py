@@ -199,7 +199,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 					cur_address = sub1[1]
 			elif row.startswith("ESSID"):
 				sub1 = row.split('"')
-				if sub1[1]:
+				if len(sub1[1]) > 0:
 					cur_ssid = sub1[1]
 					result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
 
