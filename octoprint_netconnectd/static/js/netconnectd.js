@@ -125,60 +125,69 @@ $(function() {
                 self.error(false);
             }
 
-            self.hostname(response.hostname);
+			if (response.hostname)
+            	self.hostname(response.hostname);
 
-//            self.status.link(response.status.link);
-//            self.status.connections.ap(response.status.connections.ap);
-//            self.status.connections.wifi(response.status.connections.wifi);
-//            self.status.connections.wired(response.status.connections.wired);
-            self.status.wifi.current_ssid(response.status.wifi.current_ssid);
-            self.status.wifi.current_address(response.status.wifi.current_address);
-            self.status.wifi.present(response.status.wifi.present);
+			if response.status {
+//				if response.status.link
+//	              self.status.link(response.status.link);
+//				if response.status.connections
+//  	          self.status.connections.ap(response.status.connections.ap);
+//      	      self.status.connections.wifi(response.status.connections.wifi);
+//          	  self.status.connections.wired(response.status.connections.wired);
+				if response.status.wifi {
+		            self.status.wifi.current_ssid(response.status.wifi.current_ssid);
+		            self.status.wifi.current_address(response.status.wifi.current_address);
+		            self.status.wifi.present(response.status.wifi.present);
 
-            self.statusCurrentWifi(undefined);
-            if (response.status.wifi.current_ssid && response.status.wifi.current_address) {
-                _.each(response.wifis, function(wifi) {
-                    if (wifi.current_ssid == response.status.wifi.current_ssid && wifi.current_address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
-                        self.statusCurrentWifi(self.getEntryId(wifi));
-                    }
-                });
-            }
+		            self.statusCurrentWifi(undefined);
+		            if (response.status.wifi.current_ssid && response.status.wifi.current_address) {
+		                _.each(response.wifis, function(wifi) {
+		                    if (wifi.current_ssid == response.status.wifi.current_ssid && wifi.current_address.toLowerCase() == response.status.wifi.current_address.toLowerCase()) {
+		                        self.statusCurrentWifi(self.getEntryId(wifi));
+		                    }
+		                });
+		            }
+				}
+			}
 
-            var enableQualitySorting = false;
-            _.each(response.wifis, function(wifi) {
-                if (wifi.quality != undefined) {
-                    enableQualitySorting = true;
-                }
-            });
-            self.enableQualitySorting(enableQualitySorting);
+			if response.wifis {
+	            var enableQualitySorting = false;
+	            _.each(response.wifis, function(wifi) {
+	                if (wifi.quality != undefined) {
+	                    enableQualitySorting = true;
+	                }
+	            });
+	            self.enableQualitySorting(enableQualitySorting);
 
-            var wifis = [];
-            _.each(response.wifis, function(wifi) {
-                var qualityInt = parseInt(wifi.quality);
-                var quality = undefined;
-                if (!isNaN(qualityInt)) {
-                    quality = qualityInt;
-                }
+	            var wifis = [];
+	            _.each(response.wifis, function(wifi) {
+	                var qualityInt = parseInt(wifi.quality);
+	                var quality = undefined;
+	                if (!isNaN(qualityInt)) {
+	                    quality = qualityInt;
+	                }
 
-                wifis.push({
-                    ssid: wifi.current_ssid,
-                    address: wifi.current_address,
-                    encrypted: wifi.encrypted,
-                    quality: quality,
-                    qualityText: (quality != undefined) ? "" + quality + " dBm" : undefined
-                });
-            });
+	                wifis.push({
+	                    ssid: wifi.current_ssid,
+	                    address: wifi.current_address,
+	                    encrypted: wifi.encrypted,
+	                    quality: quality,
+	                    qualityText: (quality != undefined) ? "" + quality + " dBm" : undefined
+	                });
+	            });
 
-            self.listHelper.updateItems(wifis);
-            if (!enableQualitySorting) {
-                self.listHelper.changeSorting("ssid");
-            }
+	            self.listHelper.updateItems(wifis);
+	            if (!enableQualitySorting) {
+	                self.listHelper.changeSorting("ssid");
+	            }
 
-            if (self.pollingEnabled) {
-                self.pollingTimeoutId = setTimeout(function() {
-                    self.requestData();
-                }, 30000)
-            }
+	            if (self.pollingEnabled) {
+	                self.pollingTimeoutId = setTimeout(function() {
+	                    self.requestData();
+	                }, 30000)
+	            }
+			}
         };
 
         self.configureWifi = function(data) {
