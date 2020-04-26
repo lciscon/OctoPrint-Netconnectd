@@ -170,7 +170,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		lines = r.split('"\n')
 		result = []
 		cur_signal = "0"
-		cur_encrypted = false
+		cur_encrypted = False
 		cur_address = "0"
 		cur_ssid = ""
 		for row in lines:
