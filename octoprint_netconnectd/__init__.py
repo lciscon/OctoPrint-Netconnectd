@@ -168,7 +168,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	def _get_wifi_list(self, force=False):
 
 		r = self._exec_cmd("sudo netcmd wifis")
-		lines = r.split('"\n')
+		lines = r.split('\n')
+		self._logger.info("wifi list lines:" + str(lines))
+
 		result = []
 		cur_signal = "0"
 		cur_encrypted = False
