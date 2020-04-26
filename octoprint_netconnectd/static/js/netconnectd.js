@@ -76,15 +76,19 @@ $(function() {
             "wifis",
             {
                 "ssid": function (a, b) {
-                    // sorts ascending
-                    if (a["ssid"].toLocaleLowerCase() < b["ssid"].toLocaleLowerCase()) return -1;
-                    if (a["ssid"].toLocaleLowerCase() > b["ssid"].toLocaleLowerCase()) return 1;
+					if (a["ssid"] && b["ssid"]) {
+                    	// sorts ascending
+                    	if (a["ssid"].toLocaleLowerCase() < b["ssid"].toLocaleLowerCase()) return -1;
+                    	if (a["ssid"].toLocaleLowerCase() > b["ssid"].toLocaleLowerCase()) return 1;
+					}
                     return 0;
                 },
                 "quality": function (a, b) {
                     // sorts descending
-                    if (a["quality"] > b["quality"]) return -1;
-                    if (a["quality"] < b["quality"]) return 1;
+					if (a["quality"] && b["quality"]) {
+                    	if (a["quality"] > b["quality"]) return -1;
+                    	if (a["quality"] < b["quality"]) return 1;
+					}
                     return 0;
                 }
             },
