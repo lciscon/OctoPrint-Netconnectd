@@ -158,6 +158,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def _get_ssid(self):
 		r = self._exec_cmd("sudo netcmd ssid")
+		self._logger.info("Returning ssid " + r)		
 		return r
 
 	def _get_address(self):
