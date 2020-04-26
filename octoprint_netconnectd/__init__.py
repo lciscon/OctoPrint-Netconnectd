@@ -71,6 +71,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			get_address=[],
 			set_hostname=["newname"],
 			refresh_wifi=[],
+			list_wifi=[],
 			configure_wifi=[],
 			forget_wifi=[],
 			reset=[]
@@ -253,7 +254,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 #			r = subprocess.check_output(cmd_line).decode()
 			r = subprocess.check_output(cmd_line, shell=True).decode()
 		except Exception as e:
-			output = "Error while ececuting command: {}" + str(e)
+			output = "Error while executing command: {}" + str(e)
 			self._logger.warn(output)
 			return (None,)
 
