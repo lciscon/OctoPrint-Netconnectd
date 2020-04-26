@@ -196,7 +196,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				encryptstr = "off"
 				if (sub1[1]):
 					encryptstr = sub1[1]
-				if encryptstr = "on":
+				if encryptstr == "on":
 					cur_encrypted = True
 				else:
 					cur_encrypted = False
