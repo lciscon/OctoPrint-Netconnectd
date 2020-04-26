@@ -188,7 +188,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				sub1 = row.split('"')
 				cur_ssid = sub1[1]
 				result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
-			endif
 
 		return result
 
