@@ -266,6 +266,18 @@ $(function() {
             if (!self.loginState.isAdmin()) return;
 
             self.working(true);
+            self._postCommand("configure_wifi", {ssid: ssid, psk: psk}, successCallback, failureCallback, function() {
+                self.working(false);
+                if (self.reconnectInProgress) {
+//                    self.tryReconnect();
+                }
+            }, 5000);
+        };
+
+		self.sendWifiConfig2 = function(ssid, psk, successCallback, failureCallback) {
+            if (!self.loginState.isAdmin()) return;
+
+            self.working(true);
             if (self.status.connections.ap()) {
                 self.reconnectInProgress = true;
 

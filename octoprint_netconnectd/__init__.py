@@ -242,6 +242,9 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return content
 
 	def _configure_and_select_wifi(self, ssid, psk, force=False):
+		self._exec_cmd("sudo setwifi " + ssid + " " + psk)
+
+	def _configure_and_select_wifi2(self, ssid, psk, force=False):
 		payload = dict(
 			ssid=ssid,
 			psk=psk,
