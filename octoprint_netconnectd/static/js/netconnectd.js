@@ -265,6 +265,9 @@ $(function() {
         self.sendWifiConfig = function(ssid, psk, successCallback, failureCallback) {
             if (!self.loginState.isAdmin()) return;
 
+			self.status.wifi.current_ssid(ssid);
+			self.status.wifi.current_address("");
+
             self.working(true);
             self._postCommand("configure_wifi", {ssid: ssid, psk: psk}, successCallback, failureCallback, function() {
                 self.working(false);
