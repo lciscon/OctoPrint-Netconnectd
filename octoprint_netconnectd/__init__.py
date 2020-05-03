@@ -28,7 +28,6 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	@property
 	def hostname(self):
-#		r = str("testme2")
 		r = self._exec_cmd("hostname")
 		return(r)
 
@@ -169,7 +168,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 		r = self._exec_cmd("sudo netcmd wifis")
 		lines = r.split('\n')
-		self._logger.info("wifi list lines:" + str(lines))
+#		self._logger.info("wifi list lines:" + str(lines))
 
 		result = []
 		cur_signal = "0"
@@ -183,7 +182,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 				if (sub1[1]):
 					row = sub1[1].lstrip();
 
-			self._logger.info("scanning row:" + str(row))
+#			self._logger.info("scanning row:" + str(row))
 			if row.startswith("Quality"):
 				sub1 = row.split(' ')
 				cur_signal = 0
@@ -288,7 +287,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			self._logger.warn(output)
 			return (None,)
 
-		self._logger.info("Command %s returned: %s" % (cmd_line, r))
+#		self._logger.info("Command %s returned: %s" % (cmd_line, r))
 		return(r)
 
 # TESTTEST BUGBUG HACKHACK
