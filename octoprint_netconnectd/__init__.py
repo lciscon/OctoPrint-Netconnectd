@@ -205,14 +205,14 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 					cur_address = sub1[1]
 			elif row.startswith("ESSID"):
 				sub1 = row.split('"')
-				self._logger.info("scanning ssid:" + str(sub1))
+#				self._logger.info("scanning ssid:" + str(sub1))
 				if (sub1[1]):
 					if len(sub1[1]) > 0:
 						cur_ssid = sub1[1]
-						self._logger.info("found ssid:" + str(cur_ssid))
+#						self._logger.info("found ssid:" + str(cur_ssid))
 						result.append(dict(ssid=cur_ssid, address=cur_address, quality=cur_signal, encrypted=cur_encrypted))
 
-		self._logger.info("Returning wifi list " + str(result))
+#		self._logger.info("Returning wifi list " + str(result))
 
 		return result
 
