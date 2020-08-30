@@ -1,9 +1,9 @@
 table th.settings_plugin_netconnectd_wifis_name,table td.settings_plugin_netconnectd_wifis_name{text-overflow:ellipsis;text-align:left}table th.settings_plugin_netconnectd_wifis_quality,table td.settings_plugin_netconnectd_wifis_quality{text-align:right;width:70px}table th.settings_plugin_netconnectd_wifis_action,table td.settings_plugin_netconnectd_wifis_action{text-align:center;width:100px}table th.settings_plugin_netconnectd_wifis_action a,table td.settings_plugin_netconnectd_wifis_action a{text-decoration:none;color:#000}table th.settings_plugin_netconnectd_wifis_action a.disabled,table td.settings_plugin_netconnectd_wifis_action a.disabled{color:#ccc;cursor:default}
 
 #touch body #tabs #tab_plugin_netconnectd_link a:before, #touch body #navbar #all_touchui_settings #tab_plugin_netconnectd_link a:before, #touch body #tabs #tab_plugin_netconnectd_link2 a:before, #touch body #navbar #all_touchui_settings #tab_plugin_netconnectd_link2 a:before {
-        content: "\f0ad"
+        content: "\f6ff"
 }
 
 #touch body #tabs #plugins_netconnectd_link a:before, #touch body #navbar #all_touchui_settings #control_link a:before, #touch body #tabs #control_link2 a:before, #touch body #navbar #all_touchui_settings #control_link2 a:before {
-	content: "\f7d9"
+	content: "\f6ff"
 }
