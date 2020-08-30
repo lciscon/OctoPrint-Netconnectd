@@ -273,7 +273,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			raise RuntimeError("Error while factory resetting netconnectd: " + content)
 
 	def _exec_cmd(self, cmd_line):
-		self._logger.info("Executing command: %s" % (cmd_line))
+		self._logger.debug("Executing command: %s" % (cmd_line))
 		try:
 #			r = os.system(cmd_line)
 #			Python 3
