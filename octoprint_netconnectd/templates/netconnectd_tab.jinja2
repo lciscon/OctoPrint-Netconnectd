@@ -26,7 +26,7 @@
 
 		<div class="control-group">
 			<div class="controls">
-				<strong class="text-center text-block" data-bind="visible: saveButtonEnabled">{{ _('You have unsaved changes. Don\'t forget to save them.') }}</strong>
+{#				<strong class="text-center text-block" data-bind="visible: saveButtonEnabled">{{ _('You have unsaved changes. Don\'t forget to save them.') }}</strong> #}
 				<button class="btn btn-primary btn-block" data-bind="click: save, enable: saveButtonEnabled">{{ _('Save changes') }}</button>
 				<button class="btn btn-block" data-bind="click: reset, enable: resetButtonEnabled">{{ _('Reset to active configuration') }}</button>
 			</div>
@@ -78,9 +78,11 @@
 
     <button class="btn btn-primary btn-block" data-bind="click: function() { $root.refresh() }">{{ _('Refresh') }}</button>
 
+{#
     <div>
         <small class="muted">{{ _('netconnectd socket') }}: <span data-bind="text: settings.plugins.netconnectd.socket"></span></small>
     </div>
+#}
 
     <div id="settings_plugin_netconnectd_wificonfig" class="modal hide fade">
         <div class="modal-header">
