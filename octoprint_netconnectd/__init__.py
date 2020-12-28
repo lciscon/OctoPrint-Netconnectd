@@ -241,7 +241,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return content
 
 	def _configure_and_select_wifi(self, ssid, psk, force=False):
-		runstr = "sudo setwifi \"" + ssid + "\" \"" + psk + "\""
+		runstr = "sudo changewifi \"" + ssid + "\" \"" + psk + "\""
 		self._logger.info("Executing: " + runstr)
 		self._exec_cmd(runstr)
 
