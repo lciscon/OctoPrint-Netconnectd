@@ -112,14 +112,6 @@ $(function() {
 			self.sendAddressRefresh();
         };
 
-		self.reset = function() {
-			// TODO
-		};
-
-		self.save = function() {
-
-		};
-
         self.fromResponse = function (response) {
             if (response.error !== undefined) {
 				self.error(false);
@@ -217,6 +209,10 @@ $(function() {
                 $("#settings_plugin_netconnectd_wificonfig").modal("hide");
             });
         };
+
+		self.reset = function() {
+			self.refresh();
+		};
 
 		self.save = function() {
 				self.saveHostname();
