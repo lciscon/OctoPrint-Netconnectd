@@ -300,10 +300,10 @@ __plugin_pythoncompat__ = ">=2.7,<4"
 
 def __plugin_check__():
 	import sys
-	if sys.platform == 'linux2':
+	if sys.platform.startswith('linux'):
 		return True
 
-	logging.getLogger("octoprint.plugins." + __name__).warn("The netconnectd plugin only supports Linux " + sys.platform)
+	logging.getLogger("octoprint.plugins." + __name__).warn("The netconnectd plugin only supports Linux ")
 	return False
 
 def __plugin_load__():
