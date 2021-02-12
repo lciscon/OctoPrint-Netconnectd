@@ -303,7 +303,7 @@ def __plugin_check__():
 	if sys.platform == 'linux2':
 		return True
 
-	logging.getLogger("octoprint.plugins." + __name__).warn("The netconnectd plugin only supports Linux")
+	logging.getLogger("octoprint.plugins." + __name__).warn("The netconnectd plugin only supports Linux " + sys.platform)
 	return False
 
 def __plugin_load__():
