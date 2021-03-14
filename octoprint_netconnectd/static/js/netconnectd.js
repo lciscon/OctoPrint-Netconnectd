@@ -26,7 +26,7 @@ $(function() {
                 current_ssid: ko.observable(),
                 current_address: ko.observable(),
                 present: ko.observable()
-            }
+            },
 			wired: {
                 current_address: ko.observable(),
                 present: ko.observable()
