@@ -22,9 +22,11 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def __init__(self):
 		self.address = None
+		self.address2 = None
 
 	def initialize(self):
 		self.address = self._settings.get(["socket"])
+		self.address2 = self._settings.get(["socket2"])
 
 	@property
 	def hostname(self):
@@ -46,6 +48,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 	def on_settings_save(self, data):
 		octoprint.plugin.SettingsPlugin.on_settings_save(self, data)
 		self.address = self._settings.get(["socket"])
+		self.address2 = self._settings.get(["socket2"])
 
 	def get_settings_defaults(self):
 		return dict(
@@ -68,6 +71,7 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			get_hostname=[],
 			get_ssid=[],
 			get_address=[],
+			get_address2=[],
 			set_hostname=["newname"],
 			refresh_wifi=[],
 			list_wifi=[],
@@ -119,6 +123,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 			self._logger.info("Returning address "+ self._get_address())
 			return jsonify(dict(address=str(self._get_address())))
 
+		elif command == "get_address2":
+			self._logger.info("Returning address2 "+ self._get_address2())
+			return jsonify(dict(address=str(self._get_address2())))
+
 		# any commands processed after this check require admin permissions
 		if not admin_permission.can():
 			return make_response("Insufficient rights", 403)
@@ -162,6 +170,10 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 	def _get_address(self):
 		r = self._exec_cmd("sudo netcmd address")
+		return r
+
+	def _get_address2(self):
+		r = self._exec_cmd("sudo netcmd address2")
 		return r
 
 	def _get_wifi_list(self, force=False):

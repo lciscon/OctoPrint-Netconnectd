@@ -27,6 +27,10 @@ $(function() {
                 current_address: ko.observable(),
                 present: ko.observable()
             }
+			wired: {
+                current_address: ko.observable(),
+                present: ko.observable()
+            }
         };
         self.statusCurrentWifi = ko.observable();
 
@@ -110,6 +114,7 @@ $(function() {
 			self.sendHostnameRefresh();
 			self.sendSSIDRefresh();
 			self.sendAddressRefresh();
+			self.sendAddress2Refresh();
         };
 
         self.fromResponse = function (response) {
@@ -247,6 +252,13 @@ $(function() {
             });
         };
 
+		self.sendAddress2Refresh = function(force) {
+			if (force === undefined) force = false;
+            self._postCommand("get_address2", {force: force}, function(response) {
+				self.status.wired.current_address(response.address);
+            });
+        };
+
 		self.saveHostname = function() {
 			self._postCommand("set_hostname", {newname: self.hostname()});
 		};
@@ -263,6 +275,7 @@ $(function() {
 
 			self.status.wifi.current_ssid(ssid);
 			self.status.wifi.current_address("");
+			self.status.wired.current_address("");
 
             self.working(true);
             self._postCommand("configure_wifi", {ssid: ssid, psk: psk}, successCallback, failureCallback, function() {

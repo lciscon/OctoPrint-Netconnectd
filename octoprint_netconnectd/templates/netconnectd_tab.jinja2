@@ -11,6 +11,13 @@
 		</div>
 
 		<div class="control-group">
+			<label class="control-label" for="settings_plugin_netconnectd_address2">{{ _('Wired Address') }}</label>
+			<div class="controls">
+				<input type="text" class="input" id="settings_plugin_netconnectd_address2" data-bind="value: status.wired.current_address, enable: $root.loginState.isUser()" readonly>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<label class="control-label" for="settings_plugin_netconnectd_ssid">{{ _('Wifi SSID') }}</label>
 			<div class="controls">
 				<input type="text" class="input" id="settings_plugin_netconnectd_ssid" data-bind="value: status.wifi.current_ssid, enable: $root.loginState.isUser()" readonly>
@@ -18,7 +25,7 @@
 		</div>
 
 		<div class="control-group">
-			<label class="control-label" for="settings_plugin_netconnectd_address">{{ _('Current Address') }}</label>
+			<label class="control-label" for="settings_plugin_netconnectd_address">{{ _('Wifi Address') }}</label>
 			<div class="controls">
 				<input type="text" class="input" id="settings_plugin_netconnectd_address" data-bind="value: status.wifi.current_address, enable: $root.loginState.isUser()" readonly>
 			</div>
