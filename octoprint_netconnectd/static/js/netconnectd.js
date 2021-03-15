@@ -286,6 +286,7 @@ $(function() {
             }, 5000);
         };
 
+/*
 		self.sendWifiConfig2 = function(ssid, psk, successCallback, failureCallback) {
             if (!self.loginState.isAdmin()) return;
 
@@ -315,10 +316,12 @@ $(function() {
             self._postCommand("reset", {});
         };
 
+
         self.sendForgetWifi = function() {
             if (!self.loginState.isAdmin()) return;
             self._postCommand("forget_wifi", {});
         };
+*/
 
         self._postCommand = function (command, data, successCallback, failureCallback, alwaysCallback, timeout) {
             var payload = _.extend(data, {command: command});

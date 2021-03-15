@@ -228,61 +228,61 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 
 		return result
 
-	def _get_wifi_list2(self, force=False):
-		payload = dict()
-		if force:
-			self._logger.info("Forcing wifi refresh...")
-			payload["force"] = True
+#	def _get_wifi_list2(self, force=False):
+#		payload = dict()
+#		if force:
+#			self._logger.info("Forcing wifi refresh...")
+#			payload["force"] = True
 
-		flag, content = self._send_message("list_wifi", payload)
-		if not flag:
-			raise RuntimeError("Error while listing wifi: " + content)
+#		flag, content = self._send_message("list_wifi", payload)
+#		if not flag:
+#			raise RuntimeError("Error while listing wifi: " + content)
 
-		result = []
-		for wifi in content:
-			result.append(dict(ssid=wifi["ssid"], address=wifi["address"], quality=wifi["signal"], encrypted=wifi["encrypted"]))
-		return result
+#		result = []
+#		for wifi in content:
+#			result.append(dict(ssid=wifi["ssid"], address=wifi["address"], quality=wifi["signal"], encrypted=wifi["encrypted"]))
+#		return result
 
-	def _get_status(self):
-		payload = dict()
+#	def _get_status(self):
+#		payload = dict()
 
-		flag, content = self._send_message("status", payload)
-		if not flag:
-			raise RuntimeError("Error while querying status: " + content)
+#		flag, content = self._send_message("status", payload)
+#		if not flag:
+#			raise RuntimeError("Error while querying status: " + content)
 
-		return content
+#		return content
 
 	def _configure_and_select_wifi(self, ssid, psk, force=False):
 		runstr = "sudo changewifi \"" + ssid + "\" \"" + psk + "\""
 		self._logger.info("Executing: " + runstr)
 		self._exec_cmd(runstr)
 
-	def _configure_and_select_wifi2(self, ssid, psk, force=False):
-		payload = dict(
-			ssid=ssid,
-			psk=psk,
-			force=force
-		)
+#	def _configure_and_select_wifi2(self, ssid, psk, force=False):
+#		payload = dict(
+#			ssid=ssid,
+#			psk=psk,
+#			force=force
+#		)
 
-		flag, content = self._send_message("config_wifi", payload)
-		if not flag:
-			raise RuntimeError("Error while configuring wifi: " + content)
+#		flag, content = self._send_message("config_wifi", payload)
+#		if not flag:
+#			raise RuntimeError("Error while configuring wifi: " + content)
 
-		flag, content = self._send_message("start_wifi", dict())
-		if not flag:
-			raise RuntimeError("Error while selecting wifi: " + content)
+#		flag, content = self._send_message("start_wifi", dict())
+#		if not flag:
+#			raise RuntimeError("Error while selecting wifi: " + content)
 
-	def _forget_wifi(self):
-		payload = dict()
-		flag, content = self._send_message("forget_wifi", payload)
-		if not flag:
-			raise RuntimeError("Error while forgetting wifi: " + content)
+#	def _forget_wifi(self):
+#		payload = dict()
+#		flag, content = self._send_message("forget_wifi", payload)
+#		if not flag:
+#			raise RuntimeError("Error while forgetting wifi: " + content)
 
-	def _reset(self):
-		payload = dict()
-		flag, content = self._send_message("reset", payload)
-		if not flag:
-			raise RuntimeError("Error while factory resetting netconnectd: " + content)
+#	def _reset(self):
+#		payload = dict()
+#		flag, content = self._send_message("reset", payload)
+#		if not flag:
+#			raise RuntimeError("Error while factory resetting netconnectd: " + content)
 
 	def _exec_cmd(self, cmd_line):
 		self._logger.debug("Executing command: %s" % (cmd_line))
@@ -303,9 +303,8 @@ class NetconnectdSettingsPlugin(octoprint.plugin.SettingsPlugin,
 		return(r)
 
 # TESTTEST BUGBUG HACKHACK
-	def _send_message(self, message, data):
-		return True, response["result abc"]
-
+#	def _send_message(self, message, data):
+#		return True, response["result abc"]
 
 __plugin_name__ = "Network Setup"
 __plugin_pythoncompat__ = ">=2.7,<4"
